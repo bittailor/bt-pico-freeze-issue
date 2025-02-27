@@ -80,7 +80,6 @@ void packetHandler(uint8_t packetType, uint16_t channel, uint8_t *packet, uint16
 int main()
 {
     stdio_init_all();
-    //hci_dump_init(hci_dump_embedded_stdout_get_instance());
     
     BT_LOG("STARTUP ...\n");
     BT_LOG("Versions: PICO_SDK = %s, BTSTACK = %s\n", PICO_SDK_VERSION_STRING, BTSTACK_VERSION_STRING);
@@ -104,8 +103,9 @@ int main()
     cyw43_arch_gpio_put(CYW43_WL_GPIO_LED_PIN, 0);
     BT_LOG("... STARTUP done\n");
 
+    int counter = 0;
     while (true) {
-        BT_LOG("PING\n");
+        BT_LOG("Loop %d \n", counter++);
         cyw43_arch_gpio_put(CYW43_WL_GPIO_LED_PIN, 1);
         BT_LOG("sleep 100 ...\n");
         sleep_ms(100);
